@@ -1,8 +1,9 @@
 services:
   dev:
     image: aiofranka
-    stdin_open: true
-    tty: true
     working_dir: /workspace
     volumes:
       - .:/workspace
+    privileged: true
+    network_mode: host
+    command: sleep infinity
