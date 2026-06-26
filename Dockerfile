@@ -8,5 +8,6 @@ RUN apt-get update && apt-get install -y git && \
 RUN cd /tmp/ && \
   git clone https://github.com/Improbable-AI/aiofranka.git && \
   cd aiofranka && \
+  pip --no-cache-dir install pylibfranka==0.17.0 && \
   pip --no-cache-dir install . && \
   rm -rf /tmp/aiofranka
