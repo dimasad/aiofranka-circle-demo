@@ -6,4 +6,11 @@ services:
       - .:/workspace
     privileged: true
     network_mode: host
-    command: sleep infinity
+    environment:
+      - DISPLAY=:99
+    # Start a virtual framebuffer so MuJoCo's GLFW viewer has a display,
+    # then park the container alive for interactive use.
+    command: >
+      bash -c "Xvfb :99 -screen 0 1280x720x24 -ac +extension GLX +render -noreset &
+               sleep 0.5 &&
+               sleep infinity"
