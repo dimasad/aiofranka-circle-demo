@@ -1,9 +1,16 @@
 services:
   dev:
-    image: aiofranka
+    build: .
     working_dir: /workspace
     volumes:
       - .:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
     privileged: true
     network_mode: host
     command: sleep infinity
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    #devices:
+    #  - nvidia.com/gpu=all

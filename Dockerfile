@@ -8,5 +8,8 @@ RUN apt-get update && apt-get install -y git && \
 RUN cd /tmp/ && \
   git clone https://github.com/Improbable-AI/aiofranka.git && \
   cd aiofranka && \
+  pip --no-cache-dir install mujoco==3.6.0 && \
   pip --no-cache-dir install . && \
   rm -rf /tmp/aiofranka
+
+RUN echo "ulimit -r 99" >> ~/.bashrc
